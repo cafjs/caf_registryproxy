@@ -19,6 +19,6 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 
-RUN  . /usr/src/app/http_proxy_build; npm install --ignore-scripts --production .
+RUN  . /usr/src/app/http_proxy_build; npm install  --production .
 
 CMD [ "npm", "start" ]
