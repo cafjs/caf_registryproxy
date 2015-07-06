@@ -1,0 +1,54 @@
+{
+    "id": "registryproxy",
+    "container": {
+        "type":"DOCKER",
+        "volumes":[
+            {
+               "containerPath":"/certs",
+                "hostPath":"/mnt/certs",
+                "mode":"RO"
+            }
+        ],
+        "docker": {
+            "image":"registry.cafjs.com:32000/root-registryproxy",
+            "network":"BRIDGE",
+            "portMappings":[
+                {
+                    "containerPort":32000,
+                    "hostPort":32000,
+                    "protocol":"tcp"
+                }
+            ],
+            "privileged":false,
+            "parameters":[
+                {
+                    "key" : "add-host",
+                    "value" : "registry.cafjs.com:10.0.0.13"
+                },
+                {
+                    "key":"env",
+                    "value":"ACCOUNTS_URL=https://root-accounts.cafjs.com"
+                },
+                {
+                    "key":"env",
+                    "value":"TARGET_URL=https://registry.cafjs.com:32000"
+                },
+                {
+                    "key":"env",
+                    "value":"SSL_KEYS_DIR=/certs"
+                },
+                {
+                    "key":"env",
+                    "value":"PFX_FILE=ssl-all.pfx"
+                }
+
+            ],
+            "forcePullImage":true
+        }
+    },
+    "args": [],
+    "cpus": 0.1,
+    "mem": 320.0,
+    "instances": 1,
+    "constraints": [["hostname", "CLUSTER", "10.0.0.18"]]
+}

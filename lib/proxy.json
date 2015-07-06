@@ -29,11 +29,7 @@
                  "port" : "process.env.PORT0||32000",
                  "internalPort" : "process.env.DOCKER_APP_INTERNAL_PORT||-1",
                  "host" : "process.env.HOST||localhost",
-                 "home": "process.env.HOME||/tmp",
-                 "registry" : {
-                     "port" : "process.env.REGISTRY_PORT_32000_TCP_PORT||-1",
-                     "hostname" : "process.env.HOST||default"
-                 }
+                 "home": "process.env.HOME||/tmp"
              }
         },
         {
@@ -43,7 +39,7 @@
             "env" : {
                 "keysDir": "process.env.KEYS_DIR||null",
                 "trustedPubKeyFile" : "process.env.TRUSTED_PUB_KEY_FILE||rsa_pub.pem",
-                "accountsURL": "process.env.ACCOUNTS_URL||http://root-accounts.cafjs.com"
+                "accountsURL": "process.env.ACCOUNTS_URL||https://root-accounts.cafjs.com"
             }
         },
         {
@@ -51,12 +47,11 @@
             "module": "./plug_registryproxy",
             "description": "Docker registry proxy service",
             "env" : {
-                "port" : "process.env.REGISTRY_PORT_32000_TCP_PORT||32000",
-                "hostname" : "process.env.REGISTRY_PORT_32000_TCP_ADDR||localhost",
+                "targetURL" : "process.env.TARGET_URL||https://registry.cafjs.com:32000",
                 "sslKeysDir": "process.env.SSL_KEYS_DIR||null",
                 "sslPrivKeyFile" : "process.env.SSL_PRIV_KEY_FILE||ssl-key.pem",
                 "sslCertFile" : "process.env.SSL_CERT_FILE||ssl-cert.pem",
-                "pfxFile" : "process.env.PFX_FILE||ssl.pfx"
+                "pfxFile" : "process.env.PFX_FILE||ssl-all.pfx"
             }
         },
         {

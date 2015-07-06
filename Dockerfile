@@ -3,10 +3,7 @@
 # AUTHOR:         Antonio Lain <antlai@cafjs.com>
 # DESCRIPTION:    Cloud Assistants Docker registry proxy
 # TO_BUILD:       docker build -rm -t registry.cafjs.com:32000/root-registryproxy .
-# TO_RUN:         docker run -p 32000:32000 -e DOCKER_APP_INTERNAL_PORT=32000 -e PORT0=32000 -e HOST=<host_ip>  registry.cafjs.com:32000/root-registryproxy
-#                    or use docker-compose up -d (for local testing)
-#                    or, if registry is already locally running:
-#                  docker run -p 32000:32000 -e DOCKER_APP_INTERNAL_PORT=32000 -e PORT0=32000  --link registry_name:registry registry.cafjs.com:32000/root-registryproxy
+# TO_RUN:         docker run -p 32000:32000 -e DOCKER_APP_INTERNAL_PORT=32000 -e TARGET_URL=https://registry.cafjs.com:32000 registry.cafjs.com:32000/root-registryproxy
 
 
 FROM node:0.10
