@@ -6,7 +6,7 @@
 # TO_RUN:         docker run -p 32000:32000 -e DOCKER_APP_INTERNAL_PORT=32000 -e TARGET_URL=https://registry.cafjs.com:32000 registry.cafjs.com:32000/root-registryproxy
 
 
-FROM node:0.10
+FROM node:4.3
 
 EXPOSE 3000
 
@@ -16,6 +16,7 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 
-RUN  . /usr/src/app/http_proxy_build; npm install  --production .
+RUN  touch /usr/src/app/http_proxy_build; . /usr/src/app/http_proxy_build;  rm -fr node_modules/*; rm -f npm-shrinkwrap.json; if test -f all.tgz; then tar zxvf all.tgz; fi; npm install --production . ; rm -f all.tgz
+
 
 CMD [ "npm", "start" ]
