@@ -55,7 +55,8 @@
                 "sslKeysDir": "process.env.SSL_KEYS_DIR||null",
                 "sslPrivKeyFile" : "process.env.SSL_PRIV_KEY_FILE||ssl-key.pem",
                 "sslCertFile" : "process.env.SSL_CERT_FILE||ssl-certs.pem",
-                "pfxFile" : "process.env.PFX_FILE||ssl-all.pfx"
+                "pfxFile" : "process.env.PFX_FILE||ssl-all.pfx",
+                "proxyTimeoutMsec" :"process.env.PROXY_TIMEOUT_MSEC||1200000"
             }
         },
         {
