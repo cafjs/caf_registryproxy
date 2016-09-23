@@ -4,6 +4,11 @@
         "type":"DOCKER",
         "volumes":[
             {
+                "containerPath":"/keys",
+                "hostPath":"/nfs/pubkeys",
+                "mode":"RO"
+            },
+            {
                "containerPath":"/certs",
                 "hostPath":"/mnt/certs",
                 "mode":"RO"
@@ -21,6 +26,10 @@
             ],
             "privileged":false,
             "parameters":[
+                {
+                    "key":"env",
+                    "value":"KEYS_DIR=/keys"
+                },
                 {
                     "key" : "add-host",
                     "value" : "registry.cafjs.com:10.0.0.13"
