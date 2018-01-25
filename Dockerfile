@@ -2,21 +2,26 @@
 # DOCKER-VERSION  1.7.0
 # AUTHOR:         Antonio Lain <antlai@cafjs.com>
 # DESCRIPTION:    Cloud Assistants Docker registry proxy
-# TO_BUILD:       docker build -rm -t registry.cafjs.com:32000/root-registryproxy .
-# TO_RUN:         docker run -p 32000:32000 -e DOCKER_APP_INTERNAL_PORT=32000 -e TARGET_URL=https://registry.cafjs.com:32000 registry.cafjs.com:32000/root-registryproxy
+# TO_BUILD:       cafjs mkImage . registry.cafjs.com:32000/root-registryproxy .
+# TO_RUN:         cafjs run --appImage registry.cafjs.com:32000/root-registryproxy registryproxy
 
 
-FROM node:4.3
+FROM node:8
 
 EXPOSE 3000
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src
+
+ENV PATH="/usr/src/node_modules/.bin:${PATH}"
+
+RUN apt-get update && apt-get install -y rsync
+
+COPY . /usr/src
+
+RUN  cd /usr/src/app && yarn install  --ignore-optional && cafjs build &&  yarn install --production --ignore-optional && yarn cache clean
 
 WORKDIR /usr/src/app
 
-COPY . /usr/src/app
+ENTRYPOINT ["node"]
 
-RUN  touch /usr/src/app/http_proxy_build; . /usr/src/app/http_proxy_build;  rm -fr node_modules/*; rm -f npm-shrinkwrap.json; if test -f all.tgz; then tar zxvf all.tgz; fi; npm install --production . ; rm -f all.tgz
-
-
-CMD [ "npm", "start" ]
+CMD [ "./start.js" ]

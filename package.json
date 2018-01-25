@@ -1,11 +1,11 @@
 {
     "name": "caf_registryproxy",
     "description": "Cloud Assistant Docker registry proxy",
-    "version": "0.2.10",
+    "version": "0.3.0",
     "author": "Antonio Lain <antlai@cafjs.com>",
     "dependencies": {
-        "caf_core": "^0.2.0",
-        "caf_srp": "^0.2.0",
+        "caf_core": "^0.3.0",
+        "caf_srp": "^0.3.0",
         "http-proxy": "^1.11.1"
     },
     "devDependencies": {
@@ -19,10 +19,11 @@
         "url": "https://github.com/cafjs/caf_registryproxy.git"
     },
     "scripts": {
-       "start" : "node ./start.js",
+        "build": "echo done",
+        "start" : "node ./start.js",
         "test": "node ./node_modules/.bin/nodeunit",
         "eslint" : "./node_modules/.bin/eslint .",
         "eslintfix" : "./node_modules/.bin/eslint --fix ."
     },
-    "engines": { "node": ">= 0.10.1 " }
+    "engines": { "node": ">= 8.0.0" }
 }
