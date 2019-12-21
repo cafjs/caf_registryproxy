@@ -6,7 +6,7 @@
 # TO_RUN:         cafjs run --appImage gcr.io/cafjs-k8/root-registryproxy registryproxy
 
 
-FROM node:10
+FROM node:12
 
 EXPOSE 3000
 
